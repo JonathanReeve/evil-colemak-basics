@@ -68,7 +68,7 @@ rotated; see evil-colemak-basics-rotate-t-f-j."
       "gN" 'evil-next-visual-line
       "e" 'evil-previous-line
       "ge" 'evil-previous-visual-line
-      "E" 'evil-lookup
+      "K" 'evil-lookup
       "i" 'evil-forward-char
       "j" 'evil-forward-word-end
       "J" 'evil-forward-WORD-end
@@ -81,14 +81,14 @@ rotated; see evil-colemak-basics-rotate-t-f-j."
       "zi" 'evil-scroll-column-right
       "zI" 'evil-scroll-right)
     (evil-define-key '(normal visual) keymap
-      "l" 'undo-tree-undo
+      "u" 'undo-tree-undo
       "N" 'evil-join
       "gN" 'evil-join-whitespace)
     (evil-define-key 'normal keymap
-      "u" 'evil-insert
-      "U" 'evil-insert-line)
+      "l" 'evil-insert
+      "L" 'evil-insert-line)
     (evil-define-key 'visual keymap
-      "U" 'evil-insert)
+      "l" 'evil-insert)
     (evil-define-key '(visual operator) keymap
       "u" evil-inner-text-objects-map)
     (evil-define-key 'operator keymap
