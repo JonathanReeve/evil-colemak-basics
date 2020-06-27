@@ -92,7 +92,33 @@ rotated; see evil-colemak-basics-rotate-t-f-j."
     (evil-define-key '(visual operator) keymap
       "u" evil-inner-text-objects-map)
     (evil-define-key 'operator keymap
-      "i" 'evil-forward-char)))
+      "i" 'evil-forward-char)
+    (when evil-colemak-basics-rotate-t-f-j
+      (evil-define-key '(motion normal visual) keymap
+        "f" 'evil-forward-word-end
+        "F" 'evil-forward-WORD-end
+        "gf" 'evil-backward-word-end
+        "gF" 'evil-backward-WORD-end
+        "gt" 'find-file-at-point
+        "gT" 'evil-find-file-at-point-with-line)
+      (cond
+       ((eq evil-colemak-basics-char-jump-commands nil)
+        (evil-define-key '(motion normal visual) keymap
+            "t" 'evil-find-char
+            "T" 'evil-find-char-backward
+            "j" 'evil-find-char-to
+            "J" 'evil-find-char-to-backward))
+       ((eq evil-colemak-basics-char-jump-commands 'evil-snipe)
+        ;; XXX https://github.com/hlissner/evil-snipe/issues/46
+        (evil-snipe-def 1 inclusive "t" "T")
+        (evil-snipe-def 1 exclusive "j" "J")
+        (evil-define-key '(motion normal visual) keymap
+          "t" 'evil-snipe-t
+          "T" 'evil-snipe-T
+          "j" 'evil-snipe-j
+          "J" 'evil-snipe-J))
+       (t (user-error "Invalid evil-colemak-basics-char-jump-commands configuration"))))
+    keymap))
 
 (defvar evil-colemak-basics-keymap
   (evil-colemak-basics--make-keymap)
